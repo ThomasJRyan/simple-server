@@ -1,28 +1,178 @@
 {
     "buttons": [
         {
-            "gpio": 5,
-            "requests": []
+            "gpio": {
+                "mutable": false,
+                "value": 5
+            },
+            "requests": {
+                "mutable": true,
+                "value": [
+                    {
+                        "method": "GET",
+                        "url": "http://",
+                        "args": {
+                            "json": {},
+                            "headers": {},
+                            "params": {},
+                            "data": {}
+                        }
+                    }
+                ]
+            },
+            "mode": {
+                "mutable": true,
+                "value": "cycle",
+                "options": [
+                    "cycle",
+                    "sequence"
+                ]
+            }
         },
         {
-            "gpio": 4,
-            "requests": []
+            "gpio": {
+                "mutable": false,
+                "value": 4
+            },
+            "requests": {
+                "mutable": true,
+                "value": [
+                    {
+                        "method": "GET",
+                        "url": "http://",
+                        "args": {
+                            "json": {},
+                            "headers": {},
+                            "params": {},
+                            "data": {}
+                        }
+                    }
+                ]
+            },
+            "mode": {
+                "mutable": true,
+                "value": "cycle",
+                "options": [
+                    "cycle",
+                    "sequence"
+                ]
+            }
         },
         {
-            "gpio": 3,
-            "requests": []
+            "gpio": {
+                "mutable": false,
+                "value": 3
+            },
+            "requests": {
+                "mutable": true,
+                "value": [
+                    {
+                        "method": "GET",
+                        "url": "http://",
+                        "args": {
+                            "json": {},
+                            "headers": {},
+                            "params": {},
+                            "data": {}
+                        }
+                    }
+                ]
+            },
+            "mode": {
+                "mutable": true,
+                "value": "cycle",
+                "options": [
+                    "cycle",
+                    "sequence"
+                ]
+            }
         },
         {
-            "gpio": 6,
-            "requests": []
+            "gpio": {
+                "mutable": false,
+                "value": 6
+            },
+            "requests": {
+                "mutable": true,
+                "value": [
+                    {
+                        "method": "GET",
+                        "url": "http://",
+                        "args": {
+                            "json": {},
+                            "headers": {},
+                            "params": {},
+                            "data": {}
+                        }
+                    }
+                ]
+            },
+            "mode": {
+                "mutable": true,
+                "value": "cycle",
+                "options": [
+                    "cycle",
+                    "sequence"
+                ]
+            }
         },
         {
-            "gpio": 7,
-            "requests": []
+            "gpio": {
+                "mutable": false,
+                "value": 7
+            },
+            "requests": {
+                "mutable": true,
+                "value": [
+                    {
+                        "method": "GET",
+                        "url": "http://",
+                        "args": {
+                            "json": {},
+                            "headers": {},
+                            "params": {},
+                            "data": {}
+                        }
+                    }
+                ]
+            },
+            "mode": {
+                "mutable": true,
+                "value": "cycle",
+                "options": [
+                    "cycle",
+                    "sequence"
+                ]
+            }
         },
         {
-            "gpio": 8,
-            "requests": []
+            "gpio": {
+                "mutable": false,
+                "value": 8
+            },
+            "requests": {
+                "mutable": true,
+                "value": [
+                    {
+                        "method": "GET",
+                        "url": "http://",
+                        "args": {
+                            "json": {},
+                            "headers": {},
+                            "params": {},
+                            "data": {}
+                        }
+                    }
+                ]
+            },
+            "mode": {
+                "mutable": true,
+                "value": "cycle",
+                "options": [
+                    "cycle",
+                    "sequence"
+                ]
+            }
         }
     ]
 }
