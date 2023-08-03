@@ -1,0 +1,28 @@
+{
+    "buttons": [
+        {
+            "gpio": 5,
+            "requests": []
+        },
+        {
+            "gpio": 4,
+            "requests": []
+        },
+        {
+            "gpio": 3,
+            "requests": []
+        },
+        {
+            "gpio": 6,
+            "requests": []
+        },
+        {
+            "gpio": 7,
+            "requests": []
+        },
+        {
+            "gpio": 8,
+            "requests": []
+        }
+    ]
+}
