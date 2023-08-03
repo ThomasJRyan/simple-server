@@ -23,3 +23,11 @@ async def set_config(request: Request):
 @app.get("/base_config")
 async def base_config():
     return FileResponse("static/base_config.json")
+
+@app.get("/alpine.js")
+async def base_config():
+    return FileResponse("static/alpine.js")
+
+@app.get("/pure.css")
+async def base_config():
+    return FileResponse("static/pure.css")
