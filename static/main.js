@@ -7,11 +7,13 @@ document.addEventListener('alpine:init', async () => {
         open: false,
         selectedButton: undefined,
         buttonData: undefined,
+        modButtonData: undefined,
         parsedButtonData: undefined,
 
         toggle() {
             this.open = !this.open
         },
+
         openPanel(selectedButton) {
             console.log('openPanel', selectedButton)
             this.selectedButton = selectedButton;
@@ -27,9 +29,32 @@ document.addEventListener('alpine:init', async () => {
                 return null; // Button not found
             }
             // TODO This needs to be dynamic
-            this.buttonData = generateFormFromJson(button);
+            this.buttonData = button;
+            this.modButtonData = button;
 
             this.parsedButtonData = JSON.stringify(this.buttonData, null, 2);
+        },
+
+        addRequest() {
+            const button = Alpine.store('configPanel').modButtonData;
+            console.log(button);
+
+            let buttonToAddRequest = this.modButtonData.requests.value;
+            buttonToAddRequest.push({
+                method: 'GET', url: '', args: {
+                    data: {}, params: {}, json: {}, headers: {}
+                }
+            });
+            console.log(button);
+        },
+
+        removeRequest(index) {
+            const button = Alpine.store('configPanel').modButtonData;
+            console.log(button);
+
+            let buttonToAddRequest = this.modButtonData.requests.value;
+            buttonToAddRequest.splice(index, 1);
+            console.log(button);
         }
     });
     Alpine.store('configInfo', {
@@ -39,15 +64,13 @@ document.addEventListener('alpine:init', async () => {
             fetch('/config')
                 .then(response => response.json())
                 .then(configData => {
-                        console.log(configData);
-                        this.data = configData;
-                        jsonData = configData;
-                        window.config = configData;
-                    }
-                );
+                    console.log(configData);
+                    this.data = configData;
+                    jsonData = configData;
+                    window.config = configData;
+                });
         }
-    })
-
+    });
     Alpine.store('configInfo').fetchConfigData();
 
 
@@ -61,28 +84,23 @@ function generateFormFromJson(jsonData) {
     function processProperty(prop) {
         if (typeof prop === 'string' || typeof prop === 'number' || typeof prop === 'boolean') {
             return {
-                type: typeof prop,
-                value: prop
+                type: typeof prop, value: prop
             };
         } else if (Array.isArray(prop)) {
             return {
-                type: 'array',
-                items: prop.map(processProperty)
+                type: 'array', items: prop.map(processProperty)
             };
         } else if (typeof prop === 'object') {
             const properties = [];
             for (const key in prop) {
                 if (prop.hasOwnProperty(key)) {
                     properties.push({
-                        label: key,
-                        value: processProperty(prop[key]),
-                        type: 'object'
+                        label: key, value: processProperty(prop[key]), type: 'object'
                     });
                 }
             }
             return {
-                type: 'object',
-                properties
+                type: 'object', properties
             };
         }
     }
@@ -90,10 +108,3 @@ function generateFormFromJson(jsonData) {
     return processProperty(jsonData);
 }
 
-// Example JSON input
-const exampleJson = {
-    // ... (your JSON data here)
-};
-
-const generatedForm = generateFormFromJson(exampleJson);
-console.log(JSON.stringify(generatedForm, null, 2));

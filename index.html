@@ -46,6 +46,7 @@
             flex-wrap: wrap;
             gap: 8px;
         }
+
         .footer .button {
             width: 160px;
         }
@@ -71,6 +72,17 @@
             align-items: center;
         }
 
+        hr {
+            border-top: 0.2rem solid #9b4dca;
+            height: 1px;
+            width: 100%;
+        }
+
+        .requests-form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
     </style>
 </head>
@@ -104,14 +116,65 @@
 
     <!--Side Panel-->
 
-    <div class="config-panel" x-data x-show="$store.configPanel.open">
-        <h4>Config for Button <span x-data x-text="$store.configPanel.selectedButton"></span></h4>
-        <hr>
-        <div class="button-config-form">
-            <pre contenteditable=true x-data x-text="$store.configPanel.parsedButtonData"></pre>
-
+    <template x-data x-if="$store.configPanel.open">
+        <div class="config-panel" x-data x-show="$store.configPanel.open">
+            <h2>Config for Button <span x-text="$store.configPanel.selectedButton"></span></h2>
+            <hr>
+            <div class="button-config-form">
+                <!--            <pre contenteditable=true x-data x-text="$store.configPanel.parsedButtonData"></pre>-->
+                <h3>Mode</h3>
+                <label for="mode">Options</label>
+                <select class="custom-input" id="mode" x-data x-model="$store.configPanel.modButtonData.mode.value">
+                    <option value="cycle">Cycle</option>
+                    <option value="sequence">Sequence</option>
+                </select>
+                <br>
+                <div class="requests-form-header">
+                    <h3>Requests</h3>
+                    <div>
+                        <button class="button button-outline" x-data @click="$store.configPanel.addRequest()">Add
+                            Request
+                        </button>
+                    </div>
+                </div>
+                <div x-if="$store.configPanel.modButtonData.requests.value.length > 0">
+                    <template x-for="(request, index) in $store.configPanel.modButtonData.requests.value"
+                              :key="index">
+                        <div x-data="{hidden: true}">
+                            <div class="requests-form-header" @click="hidden=!hidden" style="cursor: pointer;">
+                                <h5 x-text="'Request #' + (index+1)"></h5>
+                                <button class="button button-clear button-small"
+                                        @click="$store.configPanel.removeRequest(index)">
+                                    🗑️
+                                </button>
+                            </div>
+                            <div x-show="!hidden">
+                                <label for="method">Method</label>
+                                <input class="custom-input" type="text" id="method" x-model="request.method">
+                                <label for="url">URL</label>
+                                <input class="custom-input" type="text" id="url" x-model="request.url">
+                                <div>
+                                    <label for="json">JSON</label>
+                                    <textarea class="custom-input" type="text" id="json"
+                                              x-model="JSON.stringify(request.args.json)"></textarea>
+                                    <label for="headers">Headers</label>
+                                    <textarea class="custom-input" type="text" id="headers"
+                                              x-model="JSON.stringify(request.args.headers)"></textarea>
+                                    <label for="params">Params</label>
+                                    <textarea class="custom-input" type="text" id="params"
+                                              x-model="JSON.stringify(request.args.params)"></textarea>
+                                    <label for="data">Data</label>
+                                    <textarea class="custom-input" type="text" id="data"
+                                              x-model="JSON.stringify(request.args.data)"></textarea>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
         </div>
-    </div>
+    </template>
 </div>
 
 <!--Export Config Modal with Code preview-->
